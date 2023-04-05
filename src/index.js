@@ -12,6 +12,7 @@ const v1CharactersRouter = require('./v1/routes/charactersRoutes'); //importa el
 
 app.use('/api/v1/characters', v1CharactersRouter); //usa el router de la versión 1 en la ruta /api/v1
 
+app.use(express.json()); //usa el middleware de express para poder usar json en el proyecto
 
 app.listen(port, () => { //inicia el servidor
     console.log(`🚀 Server running on port:${port}`); //muestra un mensaje en la consola

@@ -3,7 +3,8 @@ const characterService = require('../services/charactersService'); // importa el
 
 const getAllCharacters = (req, res) => {  // este codigo antes estaba en el router de la versión 1
     const allcharacters = characterService.getAllCharacter(); // llama a la función getAllCharacter del servicio de personajes
-    res.send(`Get all characters`);
+    console.log(allcharacters)
+    res.json(allcharacters);
 }
 const getOneCharacter = (req, res) => {
     const character = characterService.getOneCharacter(req.params.characterId);
