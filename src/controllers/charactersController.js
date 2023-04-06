@@ -1,10 +1,14 @@
 const characterService = require('../services/charactersService'); // importa el servicio de personajes
 
 
-const getAllCharacters = (req, res) => {  // este codigo antes estaba en el router de la versión 1
-    const allcharacters = characterService.getAllCharacter(); // llama a la función getAllCharacter del servicio de personajes
-    console.log(allcharacters)
-    res.json(allcharacters);
+const getAllCharacters = async (req, res) => {  // este codigo antes estaba en el router de la versión 1
+    try {
+    const allcharacters = await characterService.getAllCharacter(); // llama a la función getAllCharacter del servicio de personajes
+    // console.log(typeof allcharacters)
+    res.status(200).json({allcharacters}); // envia la respuesta al 
+    } catch (error) {
+        res.status(404).json({error: error.message});
+    }
 }
 const getOneCharacter = (req, res) => {
     const character = characterService.getOneCharacter(req.params.characterId);
