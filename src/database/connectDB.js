@@ -31,6 +31,16 @@ const characterSchema = new Schema({ // crea un esquema para los personajes. el 
 });
 
 
+// este codigo es para que el id que se muestre en la base de datos sea el id que se genera automaticamente por mongoDB y eliminar los campos __v y _id que se generan automaticamente por mongoDB
+characterSchema.set('toJSON',{ // se le aplica al esquema de personaje en este caso es el characterSchema
+    transform: (document, returnedObject) => { // transforma el documento en un objeto
+        returnedObject.id = returnedObject._id; // cambia el id por el _id que se genera automaticamente por mongoDB
+        delete returnedObject._id; // eliminar el _id que se genera automaticamente por mongoDB
+        delete returnedObject.__v; // eliminar el __v que se genera automaticamente por mongoDB
+    }
+})
+
+
 const Character = model('Character', characterSchema); // crea un modelo de personaje a partir del esquema de personaje. character es el nombre del modelo y characterSchema es el esquema que se usará para crear el modelo
 
 // // para hacer la busqueda de todos los personajes en la base de datos
@@ -63,10 +73,10 @@ const Character = model('Character', characterSchema); // crea un modelo de pers
 
 
 // const character = new Character({ // crea una instancia de personaje a partir del modelo de personaje
-//     name: 'Goku', 
+//     name: 'Vegeta', 
 //     race: 'Saiyan', 
 //     gender: 'Male', 
-//     bio: 'Goku is a Saiyan from planet Vegeta, and the main protagonist of the Dragon Ball series. He is the husband of Chi-Chi, the father of Gohan and Goten, the grandfather of Pan, and the adoptive grandfather of Trunks. Goku is the strongest fighter on the planet and is widely considered the most powerful being on Earth. He is also the deuteragonist of the Dragon Ball Z series, and the protagonist of Dragon Ball Super. Goku is a Saiyan originally sent to Earth as an infant with the mission to destroy it, but was instead raised by Grandpa Gohan and became Earth\'s greatest defender. He is the husband of Chi-Chi, the father of Gohan and Goten, the grandfather of Pan, and the adoptive grandfather of Trunks. Goku is the strongest fighter on the planet and is widely considered the most powerful being on Earth. He is also the deuteragonist of the Dragon Ball Z series, and the protagonist of Dragon Ball Super. Goku is a Saiyan originally sent to Earth as an infant with the mission to destroy it, but was instead raised by Grandpa Gohan and became Earth\'s greatest defender.', // biografía del personaje
+//     bio: " prince of the Saiyan race and is one of the main characters of the series. Vegeta is known for his arrogant and prideful personality, as well as his obsession with becoming stronger. Throughout the series, Vegeta undergoes significant character development, going from being a villain to a hero and ally of the main characters. He is a very popular character among fans of the series.",
 //     health: 100,
 //     attack: 100, 
 //     defense: 100,
