@@ -10,7 +10,7 @@ router
     //     res.send(`Get all characters`);    // esta parte se elimina por que ahora se usa el controlador
     // })
     .get('/:id', charactersController.getOneCharacterById) // obtiene un personaje por id
-    .post('/', charactersController.createCharacter) // crea un nuevo personaje
+    .post('/', charactersController.newCharacter) // crea un nuevo personaje
     .put('/:characterId', charactersController.updateCharacter) // actualiza un personaje por id
     .delete('/:characterId', charactersController.deleteCharacter) // elimina un personaje por id
 
