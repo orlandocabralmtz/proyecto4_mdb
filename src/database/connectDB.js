@@ -33,22 +33,21 @@ const characterSchema = new Schema({ // crea un esquema para los personajes. el 
 
 const Character = model('Character', characterSchema); // crea un modelo de personaje a partir del esquema de personaje. character es el nombre del modelo y characterSchema es el esquema que se usará para crear el modelo
 
+// // para hacer la busqueda de todos los personajes en la base de datos
+// const getAllCharacter = () => {
+//     const getAllCharacter = Character.find({}).then(result => { // busca todos los personajes en la base de datos)
+//         // console.log(result) // muestra los resultados en la consola
+//         // // mongoose.connection.close() // cierra la conexión a la base de datos
+//     }).catch(err => { // si hay un error
+//         console.error(err) // muestra el error en la consola
+//     });
+//     return getAllCharacter;
+// }
 
-// para hacer la busqueda de todos los personajes en la base de datos
-const getAllCharacter = () => {
-    const getAllCharacter = Character.find({}).then(result => { // busca todos los personajes en la base de datos)
-        // console.log(result) // muestra los resultados en la consola
-        // // mongoose.connection.close() // cierra la conexión a la base de datos
-    }).catch(err => { // si hay un error
-        console.error(err) // muestra el error en la consola
-    });
-    return getAllCharacter;
-}
 
-
-model.exports = {
-    getAllCharacter
-}
+// model.exports = {
+//     getAllCharacter
+// }
 
 
 
@@ -88,15 +87,13 @@ model.exports = {
 // // para hacer la busqueda de todos los personajes en la base de datos
 // Character.find({}).then(result => { // busca todos los personajes en la base de datos)
 //     console.log(result) // muestra los resultados en la consola
-//     // mongoose.connection.close() // cierra la conexión a la base de datos
+//     mongoose.connection.close() // cierra la conexión a la base de datos
 // }).catch(err => { // si hay un error
 //     console.error(err) // muestra el error en la consola
 // });
 
 
-
 module.exports = {
     Character, // exporta el modelo de personaje
-    getAllCharacter // exporta la función para obtener todos los personajes
-
+// //     getAllCharacter // exporta la función para obtener todos los personajes
 }

@@ -1,18 +1,16 @@
-require('../database/connectDB'); // importa el archivo de conexión a la base de datos
+// require('../database/connectDB'); // importa el archivo de conexión a la base de datos
 // const Character = require('../database/models/characterSchema'); // importa el modelo de personajes
-const Character = require('./../database/connectDB'); 
+const { Character } = require('./../database/connectDB');
 
 
 
-const getAllCharacter = () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const allCharacters = Character.getAllCharacter();
-            console.log(allCharacters);
-            resolve(allCharacters);
-        }, 2000);
-    });
+// para hacer la busqueda de todos los personajes en la base de datos
+const getAllCharacter = async () => {
+    const getAllCharacters = await Character.find({});
+    // console.log(getAllCharacters);
+    return getAllCharacters;
 }
+
 
 const getOneCharacter = () => {
     return;

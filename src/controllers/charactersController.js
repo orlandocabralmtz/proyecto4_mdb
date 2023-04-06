@@ -1,14 +1,14 @@
 const characterService = require('../services/charactersService'); // importa el servicio de personajes
+// const {Character} = require('./../database/connectDB');
+const { getAllCharacter } = require('../services/charactersService'); // importa la función de obtener todos los personajes
 
 
-const getAllCharacters = async (req, res) => {  // este codigo antes estaba en el router de la versión 1
-    try {
-    const allcharacters = await characterService.getAllCharacter(); // llama a la función getAllCharacter del servicio de personajes
-    // console.log(typeof allcharacters)
-    res.status(200).json({allcharacters}); // envia la respuesta al 
-    } catch (error) {
-        res.status(404).json({error: error.message});
-    }
+
+const getAllCharacters = async (req, res, next) => {
+        const allCharacters = await  getAllCharacter();  // Esto debe ir a services
+        console.log(allCharacters)
+        res.status(200).json(allCharacters);
+
 }
 const getOneCharacter = (req, res) => {
     const character = characterService.getOneCharacter(req.params.characterId);
