@@ -9,10 +9,11 @@ router
     // (req, res) => { //crea una ruta para el servidor   
     //     res.send(`Get all characters`);    // esta parte se elimina por que ahora se usa el controlador
     // })
-    .get('/:id', charactersController.getOneCharacterById) // obtiene un personaje por id
+    .get('/:id', charactersController.getCharacterById) // obtiene un personaje por id
     .post('/', charactersController.newCharacter) // crea un nuevo personaje
-    .put('/:characterId', charactersController.updateCharacter) // actualiza un personaje por id
-    .delete('/:characterId', charactersController.deleteCharacter) // elimina un personaje por id
+    .put('/:id', charactersController.updateCharacter) // actualiza un personaje por id
+    .delete('/:id', charactersController.deleteCharacter) // elimina un personaje por id
+    .patch('/:id', charactersController.patchCharacter) // actualiza un personaje por id
 
 
 module.exports = router; //exporta el router para que pueda ser usado en otros archivos
