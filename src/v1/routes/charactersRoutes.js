@@ -13,7 +13,7 @@ router
     .post('/', charactersController.newCharacter) // crea un nuevo personaje
     .put('/:id', charactersController.updateCharacter) // actualiza un personaje por id
     .delete('/:id', charactersController.deleteCharacter) // elimina un personaje por id
-    .patch('/:id', charactersController.patchCharacter) // actualiza un personaje por id
+    .patch('/:id', charactersController.patchCharacter); // actualiza un personaje por id
 
 
 module.exports = router; //exporta el router para que pueda ser usado en otros archivos

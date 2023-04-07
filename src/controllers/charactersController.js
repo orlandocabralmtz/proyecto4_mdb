@@ -29,6 +29,12 @@ const getCharacterById = async (req, res) => {
 
 const newCharacter = async (req, res) => {
     const data = req.body;
+    if (data.name === null || data.race === null || data.gender === null || 
+        data.bio === null || data.health === null || data.attack === null || 
+        data.defense === null || data.kiRestoreSpeed || data.ability === null) { // una validación por si no ingresan  todos los datos del personaje ....
+        return res.status(400).json({ message: 'Bad Request' }); // envía un mensaje de error
+    }
+
     const newCharacter = await characterService.createCharacter(data); // esta función se importa desde el servicio de characters
     res.status(201).json({ message: 'Created', data: newCharacter });
 }
@@ -57,8 +63,8 @@ const deleteCharacter = async (req, res) => {
         return res.status(404).json({ message: 'Character not found' });
     }
 
-    await characterService.deleteCharacter(id) // elimina el personaje con el id que se le pasa
-    res.status(200).json({ message: 'Deleted' })
+    await characterService.deleteCharacter(id); // elimina el personaje con el id que se le pasa
+    res.status(200).json({ message: 'Deleted' });
 }
 
 

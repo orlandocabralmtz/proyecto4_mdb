@@ -18,7 +18,10 @@ mongoose.connect(connectionDB) // conecta a la base de datos
 
 
 const characterSchema = new Schema({ // crea un esquema para los personajes. el esquema es la estructura de los datos que se guardarán en la base de datos en este caso en la colección characters
-    name: String, // nombre del personaje
+    name: {
+        type: String, // nombre del personaje
+        required: true // el nombre del personaje es requerido
+    },
     race: String, // raza del personaje
     gender: String, // género del personaje
     bio: String, // biografía del personaje
@@ -32,7 +35,7 @@ const characterSchema = new Schema({ // crea un esquema para los personajes. el 
 
 
 // este codigo es para que el id que se muestre en la base de datos sea el id que se genera automaticamente por mongoDB y eliminar los campos __v y _id que se generan automaticamente por mongoDB
-characterSchema.set('toJSON',{ // se le aplica al esquema de personaje en este caso es el characterSchema
+characterSchema.set('toJSON', { // se le aplica al esquema de personaje en este caso es el characterSchema
     transform: (document, returnedObject) => { // transforma el documento en un objeto
         returnedObject.id = returnedObject._id; // cambia el id por el _id que se genera automaticamente por mongoDB
         delete returnedObject._id; // eliminar el _id que se genera automaticamente por mongoDB
@@ -105,5 +108,5 @@ const Character = model('Character', characterSchema); // crea un modelo de pers
 
 module.exports = {
     Character, // exporta el modelo de personaje
-// //     getAllCharacter // exporta la función para obtener todos los personajes
+    // //     getAllCharacter // exporta la función para obtener todos los personajes
 }

@@ -35,8 +35,8 @@ const updateCharacter = async (id, data) => {
 
 
 const deleteCharacter = async (id) => {
-    await Character.findByIdAndRemove(id)
-    return
+    await Character.findByIdAndRemove(id);
+    return;
 }
 
 const patchCharacter = async (id, data) => {
