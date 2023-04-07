@@ -22,7 +22,7 @@ const getCharacterById = async (req, res) => {
         return res.status(404).json({ message: 'Character not found' }); // envía un mensaje de error
     }
 
-    res.status(200).json({ message: 'OK by Id', data: userById }); // envía un mensaje y los datos del personaje con el id que se le pasa
+    res.status(200).json({ message: 'OK by Id', data: characterById }); // envía un mensaje y los datos del personaje con el id que se le pasa
 }
 
 
