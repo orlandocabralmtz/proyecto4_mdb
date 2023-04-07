@@ -17,7 +17,7 @@ const getAllCharacters = async (req, res) => {
 const getCharacterById = async (req, res) => {
     const { id } = req.params; // obtiene el id del personaje que se quiere obtener
     const characterById = await characterService.getCharacterById(id); // esta función se importa desde el servicio de characters
-    
+
     if (!characterById) { // si no se encuentra el personaje con el id que se le pasa 
         return res.status(404).json({ message: 'Character not found' }); // envía un mensaje de error
     }
@@ -29,14 +29,25 @@ const getCharacterById = async (req, res) => {
 
 const newCharacter = async (req, res) => {
     const data = req.body;
-    if (data.name === null || data.race === null || data.gender === null || 
-        data.bio === null || data.health === null || data.attack === null || 
-        data.defense === null || data.kiRestoreSpeed || data.ability === null) { // una validación por si no ingresan  todos los datos del personaje ....
+    console.log(data.name)
+    console.log(data.race)
+    console.log(data.gender)
+    console.log(data.bio)
+    console.log(data.health)
+    console.log(data.attack)
+    console.log(data.defense)
+    console.log(data.kiRestoreSpeed)
+    console.log(data.ability)
+    
+
+    if (data.name === undefined || data.race === undefined || data.gender === undefined ||
+        data.bio === undefined || data.health === undefined || data.attack === undefined ||
+        data.defense === undefined || data.kiRestoreSpeed === undefined || data.ability === undefined) { // una validación por si no ingresan  todos los datos del personaje ....
         return res.status(400).json({ message: 'Bad Request' }); // envía un mensaje de error
     }
 
-    const newCharacter = await characterService.createCharacter(data); // esta función se importa desde el servicio de characters
-    res.status(201).json({ message: 'Created', data: newCharacter });
+    await characterService.createCharacter(data); // esta función se importa desde el servicio de characters
+    res.status(201).json({ message: 'Created', data: data });
 }
 
 
@@ -57,7 +68,7 @@ const updateCharacter = async (req, res) => {
 
 const deleteCharacter = async (req, res) => {
     const { id } = req.params;
-    const character = await characterService.getCharacterById(id); 
+    const character = await characterService.getCharacterById(id);
 
     if (!character) {
         return res.status(404).json({ message: 'Character not found' });
@@ -69,7 +80,7 @@ const deleteCharacter = async (req, res) => {
 
 
 const patchCharacter = async (req, res) => {
-const { id } = req.params; 
+    const { id } = req.params;
     const data = req.body;
     const character = await characterService.getCharacterById(id);
 
